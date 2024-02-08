@@ -1358,7 +1358,7 @@ else:
 
 # Look at the daily power profile for summer and winter months, and identify if the data stream is associated with a fixed-tilt or single-axis tracking system.
 
-# In[31]:
+# In[35]:
 
 
 # CHECK MOUNTING CONFIGURATION
@@ -1368,7 +1368,6 @@ daytime_mask = power_or_irradiance(power_time_series,
 # Align daytime mask and clipping mask indices
 combined_index = daytime_mask.index.union(clipping_mask.index)
 daytime_mask_aligned = daytime_mask.reindex(combined_index, fill_value = False)
-clipping_mask_aligned = clipping_mask.reindex(combined_index, fill_value = False)
 
 predicted_mounting_config = is_tracking_envelope(power_time_series,
                                                  daytime_mask_aligned,
@@ -1380,7 +1379,7 @@ print(predicted_mounting_config.name)
 
 # Generate a dictionary output for the QA assessment of this data stream, including the percent stale and erroneous data detected, any shift dates, time shift dates, clipping information, and estimated mounting configuration.
 
-# In[32]:
+# In[36]:
 
 
 qa_check_dict = {"original_time_zone_offset": power_time_series.index.tz,
